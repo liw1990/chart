@@ -1,0 +1,91 @@
+@charset "UTF-8";
+* { margin: 0; padding: 0; }
+
+html, body { font-size: 12px; text-align: center; font-family: "微软雅黑"; }
+
+body { text-align: left; }
+
+ul li { list-style: none; }
+
+img { display: block; width: 100%; }
+
+@-webkit-keyframes mybot { 0% { transform: translate(0, 100%); opacity: 0; }
+  100% { transform: translate(0, 0); opacity: 1; } }
+.mybot { animation: mybot 1s; animation-fill-mode: forwards; }
+
+.wrap { width: 100%; height: auto; }
+.wrap .num { width: 660px; height: 50px; margin: 0 auto; display: flex; }
+.wrap .num .input_txt { width: 58px; border: 1px solid #eee; font-size: 18px; text-align: center; line-height: 50px; }
+.wrap .num .btn_ok { width: 58px; height: 50px; border: 1px solid #eee; border-radius: 8px; text-align: center; line-height: 50px; }
+.wrap .item { width: 660px; height: 600px; margin: 0 auto; position: relative; overflow: hidden; margin-bottom: 150px; }
+.wrap .item .y, .wrap .item .zx_y { height: 100%; position: absolute; left: 60px; top: 0; width: 1px; background: #eee; }
+.wrap .item .y li, .wrap .item .zx_y li { height: 1px; width: 600px; position: absolute; background: #eee; }
+.wrap .item .y li:nth-child(1), .wrap .item .zx_y li:nth-child(1) { bottom: 0px; }
+.wrap .item .y li:nth-child(2), .wrap .item .zx_y li:nth-child(2) { bottom: 50px; }
+.wrap .item .y li:nth-child(3), .wrap .item .zx_y li:nth-child(3) { bottom: 100px; }
+.wrap .item .y li:nth-child(4), .wrap .item .zx_y li:nth-child(4) { bottom: 150px; }
+.wrap .item .y li:nth-child(5), .wrap .item .zx_y li:nth-child(5) { bottom: 200px; }
+.wrap .item .y li:nth-child(6), .wrap .item .zx_y li:nth-child(6) { bottom: 250px; }
+.wrap .item .y li:nth-child(7), .wrap .item .zx_y li:nth-child(7) { bottom: 300px; }
+.wrap .item .y li:nth-child(8), .wrap .item .zx_y li:nth-child(8) { bottom: 350px; }
+.wrap .item .y li:nth-child(9), .wrap .item .zx_y li:nth-child(9) { bottom: 400px; }
+.wrap .item .y li:nth-child(10), .wrap .item .zx_y li:nth-child(10) { bottom: 450px; }
+.wrap .item .y li:nth-child(11), .wrap .item .zx_y li:nth-child(11) { bottom: 500px; }
+.wrap .item .y li p, .wrap .item .zx_y li p { position: absolute; left: -60px; bottom: 0; width: 50px; font-size: 18px; text-align: right; }
+.wrap .item .x, .wrap .item .zx_x { width: 100%; position: absolute; left: 60px; bottom: 0; height: 1px; background: #eee; display: flex; }
+.wrap .item .x li, .wrap .item .zx_x li { width: 30px; background: #f00; position: absolute; bottom: 0; }
+.wrap .item .x li:nth-child(1), .wrap .item .zx_x li:nth-child(1) { left: 30px; }
+.wrap .item .x li:nth-child(2), .wrap .item .zx_x li:nth-child(2) { left: 90px; }
+.wrap .item .x li:nth-child(3), .wrap .item .zx_x li:nth-child(3) { left: 150px; }
+.wrap .item .x li:nth-child(4), .wrap .item .zx_x li:nth-child(4) { left: 210px; }
+.wrap .item .x li:nth-child(5), .wrap .item .zx_x li:nth-child(5) { left: 270px; }
+.wrap .item .x li:nth-child(6), .wrap .item .zx_x li:nth-child(6) { left: 330px; }
+.wrap .item .x li:nth-child(7), .wrap .item .zx_x li:nth-child(7) { left: 390px; }
+.wrap .item .x li:nth-child(8), .wrap .item .zx_x li:nth-child(8) { left: 450px; }
+.wrap .item .x li:nth-child(9), .wrap .item .zx_x li:nth-child(9) { left: 510px; }
+.wrap .item .x li:nth-child(10), .wrap .item .zx_x li:nth-child(10) { left: 570px; }
+.wrap .item .zx_x li { width: 1px; height: 600px; background: #eee; }
+.wrap .item .zx_x li:nth-child(1) { left: 49px; }
+.wrap .item .zx_x li:nth-child(2) { left: 99px; }
+.wrap .item .zx_x li:nth-child(3) { left: 149px; }
+.wrap .item .zx_x li:nth-child(4) { left: 199px; }
+.wrap .item .zx_x li:nth-child(5) { left: 249px; }
+.wrap .item .zx_x li:nth-child(6) { left: 299px; }
+.wrap .item .zx_x li:nth-child(7) { left: 349px; }
+.wrap .item .zx_x li:nth-child(8) { left: 399px; }
+.wrap .item .zx_x li:nth-child(9) { left: 449px; }
+.wrap .item .zx_x li:nth-child(10) { left: 499px; }
+.wrap .item .zx_x li:nth-child(11) { left: 549px; }
+.wrap .item .zx_dot { width: 100%; position: absolute; left: 60px; bottom: 0; height: 1px; background: #eee; display: flex; }
+.wrap .item .zx_dot li { width: 5px; height: 5px; background: #f00; position: absolute; border-radius: 100%; }
+.wrap .item .zx_dot li:nth-child(1) { left: 47px; }
+.wrap .item .zx_dot li:nth-child(2) { left: 97px; }
+.wrap .item .zx_dot li:nth-child(3) { left: 147px; }
+.wrap .item .zx_dot li:nth-child(4) { left: 197px; }
+.wrap .item .zx_dot li:nth-child(5) { left: 247px; }
+.wrap .item .zx_dot li:nth-child(6) { left: 297px; }
+.wrap .item .zx_dot li:nth-child(7) { left: 347px; }
+.wrap .item .zx_dot li:nth-child(8) { left: 397px; }
+.wrap .item .zx_dot li:nth-child(9) { left: 447px; }
+.wrap .item .zx_dot li:nth-child(10) { left: 497px; }
+.wrap .item .zx_dot li:nth-child(11) { left: 547px; }
+.wrap .item .zx_dot li p { position: absolute; left: 0px; top: 0px; width: 5px; height: 5px; border-radius: 100%; background: #f00; z-index: 3; transform: scale(1); }
+.wrap .item .zx_dot li p:hover { transform: scale(1.5); }
+.wrap .item .zx_dot li span { display: block; height: 1px; background: #f00; position: absolute; left: 3px; top: 1px; transform-origin: left top; }
+.wrap .item .zx_dot li:nth-child(1) span { left: 3px; }
+.wrap .item .round { width: 500px; height: 500px; margin: 0 auto; border-radius: 100%; background: #eee; overflow: hidden; position: relative; border: none; }
+.wrap .item .round li { width: 0; height: 0; position: absolute; top: 250px; left: 250px; transform-origin: left top; }
+.wrap .item .round li p { width: 250px; height: 250px; transform-origin: left top; overflow: hidden; position: absolute; top: 0; left: 0; border: none; }
+.wrap .item .round li:nth-child(1) p { background: #f40f0f; }
+.wrap .item .round li:nth-child(2) p { background: #f8c30a; }
+.wrap .item .round li:nth-child(3) p { background: #f5f80a; }
+.wrap .item .round li:nth-child(4) p { background: #10d215; }
+.wrap .item .round li:nth-child(5) p { background: #2ff4e8; }
+.wrap .item .round li:nth-child(6) p { background: #1139cf; }
+.wrap .item .round li:nth-child(7) p { background: #8f60f0; }
+.wrap .item .round li:nth-child(8) p { background: #a20eb3; }
+.wrap .item .round li:nth-child(9) p { background: #666; }
+.wrap .item .round li:nth-child(10) p { background: blue; }
+.wrap .item .round li:hover p { background: #000; }
+
+/*# sourceMappingURL=index.css.map */

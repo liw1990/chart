@@ -1,0 +1,162 @@
+*{ margin: 0; padding: 0;}
+html,body{
+    font-size: 12px; text-align: center; font-family: "微软雅黑";
+}
+body{
+    text-align: left;
+}
+ul li{
+    list-style: none;
+}
+img{
+    display: block; width: 100%;
+}
+
+@-webkit-keyframes mybot{
+    0% { transform: translate(0,100%); opacity: 0; }
+    100% { transform: translate(0,0); opacity: 1; }
+}
+.mybot{
+	animation: mybot 1s; animation-fill-mode: forwards;
+}
+.wrap{
+	width: 100%; height: auto;
+	.num{
+        width: 660px; height: 50px; margin: 0 auto; display: flex;
+        .input_txt{
+            width: 58px; border:1px solid #eee; font-size: 18px; text-align: center; line-height: 50px;
+        }
+        .btn_ok{
+            width: 58px; height: 50px; border:1px solid #eee; border-radius: 8px; text-align: center; line-height: 50px;
+        }
+    }
+    .item{
+        width: 660px; height: 600px; margin: 0 auto; position: relative; overflow: hidden; margin-bottom: 150px;
+        .y,.zx_y{
+            height: 100%; position: absolute; left: 60px; top: 0; width: 1px; background: #eee;
+            li{
+                height: 1px; width: 600px; position: absolute; background: #eee;
+                @for $i from 1 through 11 {
+                    &:nth-child(#{$i}){
+                        bottom: (49px * ($i - 1)) +(1px * ($i - 1));
+                    }
+                }
+                p{
+                    position: absolute; left: -60px; bottom: 0; width: 50px; font-size: 18px; text-align: right;
+                }
+            }
+        }
+        .x,.zx_x{
+            width: 100%; position: absolute; left: 60px; bottom: 0; height: 1px; background: #eee; display: flex;
+            li{
+                width: 30px; background: #f00; position: absolute; bottom: 0;
+                @for $i from 1 through 10 {
+                    &:nth-child(#{$i}){
+                        left: (30px * $i) +(30px * ($i - 1))
+                    }
+                }
+            }
+            
+        }
+        .zx_x{
+        	li{
+        		width: 1px; height: 600px; background: #eee;
+        		@for $i from 1 through 11 {
+                    &:nth-child(#{$i}){
+                        left: (49px * $i) +(1px * ($i - 1));
+                    }
+                }
+        	}
+        }
+        .zx_dot{
+        	width: 100%; position: absolute; left: 60px; bottom: 0; height: 1px; background: #eee; display: flex;
+        	li{
+        		width: 5px; height: 5px; background: #f00; position: absolute; border-radius: 100%;
+        		@for $i from 1 through 11 {
+                    &:nth-child(#{$i}){
+                        left: (47px * $i) +(3px * ($i - 1));
+                    }
+                }
+                p{
+                	position: absolute; left: 0px; top: 0px; width: 5px; height: 5px; border-radius: 100%; background: #f00; z-index: 3; transform: scale(1);
+                	&:hover{
+                        transform: scale(1.5);
+                    }
+                }
+                span{
+                    display: block; height: 1px; background: #f00; position: absolute; left: 3px; top: 1px; transform-origin:left top;
+                }
+                &:nth-child(1){
+                	span{
+                		left: 3px;
+                	}
+                }
+        	}
+        }
+        .round{
+            width: 500px; height: 500px; margin: 0 auto; border-radius: 100%; background: #eee; overflow: hidden; position: relative; border:none;
+            li{
+                width: 0; height: 0; position: absolute; top: 250px; left: 250px; transform-origin:left top;
+                p{
+                    width: 250px; height: 250px; transform-origin: left top; overflow: hidden; position: absolute; top: 0; left: 0; border:none;
+                }
+                &:nth-child(1){
+                    p{
+                        background: #f40f0f;
+                    }
+                }
+                &:nth-child(2){
+                    p{
+                        background: #f8c30a;
+                    }
+                }
+                &:nth-child(3){
+                    p{
+                        background: #f5f80a;
+                    }
+                }
+                &:nth-child(4){
+                    p{
+                        background: #10d215;
+                    }
+                }
+                &:nth-child(5){
+                    p{
+                        background: #2ff4e8;
+                    }
+                }
+                &:nth-child(6){
+                    p{
+                        background: #1139cf;
+                    }
+                }
+                &:nth-child(7){
+                    p{
+                        background: #8f60f0;
+                    }
+                }
+                &:nth-child(8){
+                    p{
+                        background: #a20eb3;
+                    }
+                }
+                &:nth-child(9){
+                    p{
+                        background: #666;
+                    }
+                }
+                &:nth-child(10){
+                    p{
+                        background: blue;
+                    }
+                }
+                &:hover{
+                	p{
+                		background: #000;
+                	}
+                }
+            }
+            
+        }
+    }
+}
