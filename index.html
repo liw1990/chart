@@ -7,7 +7,8 @@
 		<script type="text/javascript" src="js/jquery-3.3.1.js" ></script>
 		<script>
 			$(function(){
-				for( var i=0 ; i<=10 ;i++){
+				var len = $(".num ul li").length
+				for( var i=0 ; i<len ;i++){
 					$(".y").append("<li><p>"+i*100+ "</p></li>")
 					$(".zx_y").append("<li><p>"+i*100+ "</p></li>")
 				}
@@ -18,11 +19,18 @@
 					$(".zx_dot li").remove()
 					//获取输入的数据
 					var numArr = []
-					for(var i=0; i<10; i++){
+					var valArr = []
+					for(var i=0; i<len; i++){
 						if($(".num .input_txt").eq(i).val()!==undefined && $(".num .input_txt").eq(i).val()!== ''){
 							numArr.push($(".num .input_txt").eq(i).val())
 						}
 					}
+					for(var i=0; i<len; i++){
+						if($(".num ul li").eq(i).html()!==undefined && $(".num ul li").eq(i).html()!== ''){
+							valArr.push($(".num ul li").eq(i).html())
+						}
+					}
+					//console.log(valArr)
 					var count=0
 					for(var i = 0;i < numArr.length; i++){
 						count = count + parseInt(numArr[i])
@@ -44,8 +52,8 @@
 						        return result;
 						    }
 							var t = getTanDeg(((numArr[i]-numArr[i-1]) /2 )/49)
-							console.log(t*Math.PI / 180)
-							console.log(t)
+							//console.log(t*Math.PI / 180)
+							//console.log(t)
 							$(".zx_dot li").eq(i-1).children("span").css("transform", "rotate(" + -t + "deg)")
 							if(numArr[i]-numArr[i-1] >0){
 								$(".zx_dot li").eq(i-1).children("span").css("width", ((numArr[i]-numArr[i-1]) /2) / Math.sin(t*Math.PI / 180) +"px")
@@ -57,27 +65,51 @@
 					//饼状图
 					var rdeg = 0
 					var ndeg = 0
+					var rate = 0
+					var rateLast = 0
 					for( var i=0 ; i<numArr.length ;i++){
 						rdeg = rdeg + ndeg
+						//console.log(ndeg / 2)
+						//console.log(rdeg)
 						var ndeg = (numArr[i]/count)*360
-						$(".round").append("<li><p></p></li>")
-						if(ndeg >= 270){
-							$(".round li").eq(i).children("p").css("transform","skewY("+ (90 - (ndeg - 270 + 3)) + "deg)")
-							$(".round li").eq(i).append("<p></p><p></p><p></p>")
-							$(".round li").eq(i).children("p").eq(1).css("transform","rotate(" + -(ndeg - 270+2) + "deg)")
-							$(".round li").eq(i).children("p").eq(2).css("transform","rotate(" + -(ndeg - 180+1) + "deg)")
-							$(".round li").eq(i).children("p").eq(3).css("transform","rotate(" + -(ndeg - 90) + "deg)")
-						}else if(ndeg > 180 && ndeg <270){
-							$(".round li").eq(i).children("p").css("transform","skewY("+ (90 - (ndeg - 180 +2)) + "deg)")
-							$(".round li").eq(i).append("<p></p><p></p>")
-							$(".round li").eq(i).children("p").eq(1).css("transform","rotate(" + -(ndeg - 180 +1) + "deg)")
-							$(".round li").eq(i).children("p").eq(2).css("transform","rotate(" + -(ndeg - 90) + "deg)")
-						}else if(ndeg < 90){
-							$(".round li").eq(i).children("p").css("transform","skewY("+ (90 - ndeg) + "deg)")
+						$(".round").append("<li><p></p><p></p></li>")
+						$(".round li").eq(i).children("p").eq(0).css("transform","rotate(" + (-(ndeg / 2)) + "deg)")
+						$(".round li").eq(i).children("p").eq(0).append("<span></span>")
+						rate = rate +(Math.floor((numArr[i]/count)*10000))/100
+						//console.log(rate)
+						$(".round li").eq(i).children("p").eq(0).children("span").css("transform","rotate(" + (rdeg + (ndeg/2)) + "deg)")
+						if(i==8){
+							//console.log(rate)
+							rateLast = Math.round((100 - rate)*100)/100
+							//console.log(rateLast)
+						}
+						if(i==9){
+							//console.log(rate)
+							//console.log(rateLast)
+							$(".round li").eq(i).children("p").eq(0).children("span").html(valArr[i]+rateLast + "%")
 						}else{
-							$(".round li").eq(i).children("p").css("transform","skewY("+ (180 - ndeg -2) + "deg)")
+							$(".round li").eq(i).children("p").eq(0).children("span").html(valArr[i]+(Math.floor((numArr[i]/count)*10000))/100 + "%")
+						}
+						if(numArr[i]/count < 0.05){
+							$(".round li").eq(i).css("z-index",2)
+						}
+						if(ndeg >= 270){
+							$(".round li").eq(i).children("p").eq(1).css("transform","skewY("+ (90 - (ndeg - 270 + 3)) + "deg)")
+							$(".round li").eq(i).append("<p></p><p></p><p></p>")
+							$(".round li").eq(i).children("p").eq(2).css("transform","rotate(" + -(ndeg - 270+2) + "deg)")
+							$(".round li").eq(i).children("p").eq(3).css("transform","rotate(" + -(ndeg - 180+1) + "deg)")
+							$(".round li").eq(i).children("p").eq(4).css("transform","rotate(" + -(ndeg - 90) + "deg)")
+						}else if(ndeg > 180 && ndeg <270){
+							$(".round li").eq(i).children("p").eq(1).css("transform","skewY("+ (90 - (ndeg - 180 +2)) + "deg)")
+							$(".round li").eq(i).append("<p></p><p></p>")
+							$(".round li").eq(i).children("p").eq(2).css("transform","rotate(" + -(ndeg - 180 +1) + "deg)")
+							$(".round li").eq(i).children("p").eq(3).css("transform","rotate(" + -(ndeg - 90) + "deg)")
+						}else if(ndeg < 90){
+							$(".round li").eq(i).children("p").eq(1).css("transform","skewY("+ (90 - ndeg) + "deg)")
+						}else{
+							$(".round li").eq(i).children("p").eq(1).css("transform","skewY("+ (180 - ndeg -2) + "deg)")
 							$(".round li").eq(i).append("<p></p>")
-							$(".round li").eq(i).children("p").eq(1).css("transform","rotate(" + -(ndeg - 90) + "deg)")
+							$(".round li").eq(i).children("p").eq(2).css("transform","rotate(" + -(ndeg - 90) + "deg)")
 						}
 						$(".round li").eq(i).css("transform","rotate(" + -rdeg + "deg)")
 					}
@@ -92,17 +124,31 @@
 	<body>
 		<div class="wrap">
 			<div class="num">
-				<input type="text" class="input_txt input_txt_01" maxlength="3" value="500" />
-				<input type="text" class="input_txt input_txt_02" maxlength="3" value="100"  />
-				<input type="text" class="input_txt input_txt_03" maxlength="3" value="10"  />
-				<input type="text" class="input_txt input_txt_04" maxlength="3" value="600"  />
-				<input type="text" class="input_txt input_txt_05" maxlength="3" value="50"  />
-				<input type="text" class="input_txt input_txt_06" maxlength="3" value="300" />
-				<input type="text" class="input_txt input_txt_07" maxlength="3" value="250"  />
-				<input type="text" class="input_txt input_txt_08" maxlength="3" value="50"  />
-				<input type="text" class="input_txt input_txt_09" maxlength="3" value="600"  />
-				<input type="text" class="input_txt input_txt_10" maxlength="3" value="80" />
-				<div class="btn_ok">确定</div>
+				<ul>
+					<li>一</li>
+					<li>二</li>
+					<li>三</li>
+					<li>四</li>
+					<li>五</li>
+					<li>六</li>
+					<li>七</li>
+					<li>八</li>
+					<li>九</li>
+					<li>十</li>
+				</ul>
+				<dl>
+					<dd><input type="text" class="input_txt input_txt_01" maxlength="3" value="500" /></dd>
+					<dd><input type="text" class="input_txt input_txt_02" maxlength="3" value="100"  /></dd>
+					<dd><input type="text" class="input_txt input_txt_03" maxlength="3" value="200"  /></dd>
+					<dd><input type="text" class="input_txt input_txt_04" maxlength="3" value="300"  /></dd>
+					<dd><input type="text" class="input_txt input_txt_05" maxlength="3" value="500"  /></dd>
+					<dd><input type="text" class="input_txt input_txt_06" maxlength="3" value="300" /></dd>
+					<dd><input type="text" class="input_txt input_txt_07" maxlength="3" value="600"  /></dd>
+					<dd><input type="text" class="input_txt input_txt_08" maxlength="3" value="200"  /></dd>
+					<dd><input type="text" class="input_txt input_txt_09" maxlength="3" value="300"  /></dd>
+					<dd><input type="text" class="input_txt input_txt_10" maxlength="3" value="800" /></dd>
+					<div class="btn_ok">确定</div>
+				</dl>
 			</div>
 			<div class="item">
 				<ul class="y"></ul>
