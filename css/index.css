@@ -77,10 +77,11 @@ img { display: block; width: 100%; }
 .wrap .item .zx_dot li:nth-child(11) { left: 547px; }
 .wrap .item .zx_dot li p { position: absolute; left: 0px; top: 0px; width: 5px; height: 5px; border-radius: 100%; background: #f00; z-index: 3; transform: scale(1); }
 .wrap .item .zx_dot li p:hover { transform: scale(1.5); }
+.wrap .item .zx_dot:hover { cursor: crosshair; }
 .wrap .item .zx_zx { width: 500px; position: absolute; left: 60px; bottom: 0; height: 500px; transform: rotateX(180deg); }
 .wrap .item .zx_cur { position: absolute; width: 1px; height: 1px; background: #f00; display: none; }
-.wrap .item .zx_cur p:nth-child(1) { position: absolute; top: 0; width: 500px; height: 1px; background: #f00; }
-.wrap .item .zx_cur p:nth-child(2) { position: absolute; left: 0; height: 500px; width: 1px; background: #f00; }
+.wrap .item .zx_cur p:nth-child(1) { position: absolute; top: 0; width: 500px; height: 1px; background: blue; }
+.wrap .item .zx_cur p:nth-child(2) { position: absolute; left: 0; height: 500px; width: 1px; background: blue; }
 .wrap .item .zx_cur p:nth-child(3) { position: absolute; left: 0; bottom: 0; width: auto; height: 20px; line-height: 20px; font-size: 12px; color: #222; }
 .wrap .item .round { width: 600px; height: 600px; margin: 0 auto; border-radius: 100%; background: #eee; overflow: hidden; position: relative; border: none; }
 .wrap .item .round li { width: 0; height: 0; position: absolute; top: 300px; left: 300px; transform-origin: left top; z-index: 0; }

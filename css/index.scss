@@ -102,6 +102,9 @@ img{
                     }
                 }
         	}
+        	&:hover{
+                cursor: crosshair;
+            }
         }
         .zx_zx{
         	width: 500px; position: absolute; left: 60px; bottom: 0; height: 500px;transform: rotateX(180deg);
@@ -109,10 +112,10 @@ img{
         .zx_cur{
         	position: absolute; width: 1px; height: 1px; background: #f00; display: none;
         	p:nth-child(1){
-        		position: absolute; top: 0; width: 500px; height: 1px; background: #f00;
+        		position: absolute; top: 0; width: 500px; height: 1px; background: blue;
         	}
         	p:nth-child(2){
-                position: absolute; left: 0; height: 500px; width: 1px; background: #f00;
+                position: absolute; left: 0; height: 500px; width: 1px; background: blue;
             }
             p:nth-child(3){
             	position: absolute; left: 0; bottom: 0; width: auto; height: 20px; line-height: 20px; font-size: 12px; color: #222;
