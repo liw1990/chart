@@ -7,12 +7,13 @@
 		<script type="text/javascript" src="js/jquery-3.3.1.js" ></script>
 		<script>
 			$(function(){
-				var len = $(".num ul li").length
-				for( var i=0 ; i<len ;i++){
+				
+				for( var i=0 ; i<=10 ;i++){
 					$(".y").append("<li><p>"+i*100+ "</p></li>")
 					$(".zx_y").append("<li><p>"+i*100+ "</p></li>")
 				}
-				function num(){
+				var len = $(".num ul li").length
+				var num = () => {
 					//清楚数据点
 					$(".x li").remove()
 					$(".round li").remove()
@@ -41,26 +42,43 @@
 						$(".zx_x").append("<li></li>")
 						$(".x li").eq(i).css("height",numArr[i] / 2 +"px")
 					}
+					
 					//折线图
-					for( var i=0 ; i<numArr.length ;i++){
-						$(".zx_dot").append("<li><p></p><span></span></li>")
-						$(".zx_dot li").eq(i).css("bottom",( numArr[i] / 2 )-3 +"px")
-						if(i>0){
-							function getTanDeg(tan) {
-						        var result = Math.atan(tan) / (Math.PI / 180);
-						        result = Math.round(result);
-						        return result;
-						    }
-							var t = getTanDeg(((numArr[i]-numArr[i-1]) /2 )/49)
-							//console.log(t*Math.PI / 180)
-							//console.log(t)
-							$(".zx_dot li").eq(i-1).children("span").css("transform", "rotate(" + -t + "deg)")
-							if(numArr[i]-numArr[i-1] >0){
-								$(".zx_dot li").eq(i-1).children("span").css("width", ((numArr[i]-numArr[i-1]) /2) / Math.sin(t*Math.PI / 180) +"px")
-							}else{
-								$(".zx_dot li").eq(i-1).children("span").css("width", ((numArr[i-1]-numArr[i]) /2) / Math.sin(-t*Math.PI / 180) +"px")
-							}
+					//折线
+					var mypoint = document.getElementById("zx_zx")
+					var rectObj = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+					console.log(mypoint.childNodes)
+					if(mypoint.childNodes.length !== 0){
+						mypoint.childNodes[0].remove()
+					}
+					if(rectObj){
+						var point = ''
+						for( var i = 0 ; i<len; i++){
+							point =point + " " + 50*(i+1) + ',' + numArr[i] / 2
 						}
+						console.log(point)
+						rectObj.setAttribute("points",point);
+						rectObj.setAttribute("style","stroke-width:1; stroke: #f00; fill: none;");
+						mypoint.appendChild(rectObj);
+					}
+					$(".zx_dot").mousemove(function(event){
+						//console.log(event)
+						$(".zx_cur").show()
+						event = event || window.event;
+						console.log(event.clientX - 60,(600 - event.clientY)*2)
+						$(".zx_cur").css("left",event.clientX + "px")
+						$(".zx_cur").css("bottom",600 - event.clientY +"px")
+						$(".zx_cur p").eq(0).css("left", - (event.clientX -60) + "px")
+						$(".zx_cur p").eq(1).css("bottom", - (600 - event.clientY) + "px")
+						$(".zx_cur p").eq(2).html(" ("+ (event.clientX -60) +"," + ( 600 - event.clientY ) * 2 +")")
+					})
+					$(".zx_dot").mouseout(function(){
+						$(".zx_cur").hide()
+					})
+					//点
+					for( var i=0 ; i<numArr.length ;i++){
+						$(".zx_dot").append("<li><p></p></li>")
+						$(".zx_dot li").eq(i).css("bottom",( numArr[i] / 2 )-3 +"px")
 					}
 					//饼状图
 					var rdeg = 0
@@ -139,29 +157,36 @@
 				<dl>
 					<dd><input type="text" class="input_txt input_txt_01" maxlength="3" value="500" /></dd>
 					<dd><input type="text" class="input_txt input_txt_02" maxlength="3" value="100"  /></dd>
-					<dd><input type="text" class="input_txt input_txt_03" maxlength="3" value="200"  /></dd>
-					<dd><input type="text" class="input_txt input_txt_04" maxlength="3" value="300"  /></dd>
-					<dd><input type="text" class="input_txt input_txt_05" maxlength="3" value="500"  /></dd>
-					<dd><input type="text" class="input_txt input_txt_06" maxlength="3" value="300" /></dd>
+					<dd><input type="text" class="input_txt input_txt_03" maxlength="3" value="300"  /></dd>
+					<dd><input type="text" class="input_txt input_txt_04" maxlength="3" value="100"  /></dd>
+					<dd><input type="text" class="input_txt input_txt_05" maxlength="3" value="600"  /></dd>
+					<dd><input type="text" class="input_txt input_txt_06" maxlength="3" value="100" /></dd>
 					<dd><input type="text" class="input_txt input_txt_07" maxlength="3" value="600"  /></dd>
 					<dd><input type="text" class="input_txt input_txt_08" maxlength="3" value="200"  /></dd>
 					<dd><input type="text" class="input_txt input_txt_09" maxlength="3" value="300"  /></dd>
-					<dd><input type="text" class="input_txt input_txt_10" maxlength="3" value="800" /></dd>
+					<dd><input type="text" class="input_txt input_txt_10" maxlength="3" value="500" /></dd>
 					<div class="btn_ok">确定</div>
 				</dl>
 			</div>
-			<div class="item">
-				<ul class="y"></ul>
-				<ul class="x"></ul>
-			</div>
-			<div class="item">
-				<ul class="round"></ul>
-			</div>
-			<div class="item">
+			<div class="item item_fixed">
 				<ul class="zx_y"></ul>
 				<ul class="zx_x"></ul>
 				<ul class="zx_dot"></ul>
+				<div class="zx_cur">
+					<p></p>
+					<p></p>
+					<p></p>
+				</div>
+				<svg class="zx_zx" id="zx_zx"></svg>
 			</div>
+			<div class="item item_2">
+				<ul class="y"></ul>
+				<ul class="x"></ul>
+			</div>
+			<div class="item item_3">
+				<ul class="round"></ul>
+			</div>
+			
 		</div>
 	</body>
 </html>
